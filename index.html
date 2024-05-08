@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кино или сердца?</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+    .container {
+        text-align: center;
+    }
+    #no-btn {
+        padding: 10px 20px;
+        margin-right: 10px;
+        background-color: #ff9999;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s;
+        position: absolute;
+    }
+    #yes-btn {
+        padding: 10px 20px;
+        background-color: #99ff99;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>вы пойдете со мной в кино??</h1>
+    <button id="no-btn">нет фууу ты кринж</button>
+    <button id="yes-btn">да конечно</button>
+</div>
+
+<script>
+    const noBtn = document.getElementById('no-btn');
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
+    const maxDistance = 50; 
+
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        const rect = noBtn.getBoundingClientRect();
+        const btnX = rect.left + btnWidth / 2;
+        const btnY = rect.top + btnHeight / 2;
+        const distance = Math.sqrt((x - btnX) ** 2 + (y - btnY) ** 2);
+
+        if (distance < maxDistance) {
+            const maxX = window.innerWidth - btnWidth;
+            const maxY = window.innerHeight - btnHeight;
+            const newX = Math.floor(Math.random() * (maxX + 1));
+            const newY = Math.floor(Math.random() * (maxY + 1));
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+    });
+
+    const yesBtn = document.getElementById('yes-btn');
+    yesBtn.addEventListener('click', () => {
+        window.location.href = 'second_page.html'; // Замените 'second_page.html' на путь к вашей второй странице
+    });
+</script>
+</body>
+</html>
+
